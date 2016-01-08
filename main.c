@@ -51,5 +51,6 @@ int main (void) {
     float_print (ans);
 
     free_all_fp_lib ();
+    return 0;
 }
 
