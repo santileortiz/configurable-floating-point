@@ -593,7 +593,7 @@ void add (arbitrary_float a, arbitrary_float b, arbitrary_float *ans)
 void subtract (arbitrary_float a, arbitrary_float b, arbitrary_float *ans)
 {
     arbitrary_float l_b = b;
-    l_b.S = 1;
+    l_b.S ^= 1;
     add (a, l_b, ans);
 }
 
@@ -604,6 +604,8 @@ void multiply (arbitrary_float a, arbitrary_float b, arbitrary_float *ans)
     uint64_t temp_l2 [2*T_size];
     uint64_t sticky;
     int i, l;
+
+    ans -> S = a.S^b.S;
 
     // ans->E = a.E+b.E-bias
     int_subtract (a.E, bias, temp, E_size);
@@ -676,6 +678,8 @@ void divide (arbitrary_float a, arbitrary_float b, arbitrary_float *ans)
     uint64_t r [2*T_size];
     uint64_t sticky;
     int i, l;
+
+    ans -> S = a.S^b.S;
 
     // ans->E = a.E-b.E+bias
     int_subtract (a.E, b.E, temp, E_size);
