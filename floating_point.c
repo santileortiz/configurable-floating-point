@@ -67,7 +67,8 @@ void init_fp_lib (int init_p, int init_w)
 
 void free_fp_array (arbitrary_float **arr, int num)
 {
-    for (int i=0; i<num; i++) {
+    int i;
+    for (i=0; i<num; i++) {
         free(arr [i] -> E);
         free(arr [i] -> T);
     }
@@ -75,8 +76,9 @@ void free_fp_array (arbitrary_float **arr, int num)
 
 void free_all_locals ()
 {
+    int i;
     free_fp_array (local_fp_numbers, next_local_number);
-    for (int i=0; i<next_user_number; i++) {
+    for (i=0; i<next_user_number; i++) {
         free (local_fp_numbers[i]);
     }
 
